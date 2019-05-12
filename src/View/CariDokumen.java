@@ -99,7 +99,15 @@ public class CariDokumen extends javax.swing.JFrame {
             new String [] {
                 "ID Dokumen", "Judul"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TabelSearch);
 
         jLabel1.setText("Query : ");
