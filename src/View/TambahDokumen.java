@@ -102,6 +102,7 @@ public class TambahDokumen extends javax.swing.JFrame {
         docNew.setId(Home.getIndex().getListOfDocument().size()+1);
         Home.getIndex().addNewDocument(docNew);
         Home.getIndex().makeDictionaryWithTermNumber();
+        dispose();
     }//GEN-LAST:event_AddButtonActionPerformed
 
     /**

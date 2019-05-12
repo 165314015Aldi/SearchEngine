@@ -27,7 +27,7 @@ public class TestBacaDirectory {
             System.out.println("Content : " + doc.getId());
             System.out.println(doc.getContent());
         }
-        index.makeDictionary();
+        index.makeDictionaryWithTermNumber();
         for (int i = 0; i < listDoc.size(); i++) {
             listDoc.get(i).Stemming();
             index.makeTFIDF(i);
@@ -40,12 +40,12 @@ public class TestBacaDirectory {
             }
         }
 
-        for (int i = 0; i < listDoc.size() - 1; i++) {
-            for (int j = i + 1; j < listDoc.size(); j++) {
+        for (int i = 1; i < listDoc.size() ; i++) {
+            for (int j = i + 1; j < listDoc.size()+1; j++) {
                 ArrayList<Posting> post1 = index.makeTFIDF(i);
                 ArrayList<Posting> post2 = index.makeTFIDF(j);
                 double Cosine = index.getInnerProduct(post1, post2);
-                System.out.println("Hasil Cosine dari doc"+(i+1)+ " dan doc"+(j+1)+"= " + Cosine);
+                System.out.println("Hasil Cosine dari doc"+i+ " dan doc"+j+"= " + Cosine);
 
             }
         }

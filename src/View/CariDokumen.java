@@ -44,6 +44,54 @@ public class CariDokumen extends javax.swing.JFrame {
                 {null, null},
                 {null, null},
                 {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null}
             },
             new String [] {
@@ -100,13 +148,14 @@ public class CariDokumen extends javax.swing.JFrame {
         String query = SearchQuery.getText();
 
         ArrayList<Posting> queryPostingList = Home.getIndex().getQueryPosting(query);
-
+        int x = 0;
         ArrayList<Document> listDocs = Home.getIndex().getListOfDocument();
         for (int i = 0; i < listDocs.size(); i++) {
             ArrayList<Posting> PostingDokumen = Home.getIndex().makeTFIDF(listDocs.get(i).getId());
             if (Home.getIndex().getCosineSimilarity(queryPostingList, PostingDokumen) > 0) {
-                TabelSearch.setValueAt(listDocs.get(i).getId(), i, 0);
-                TabelSearch.setValueAt(listDocs.get(i).getNamaDokumen(), i, 1);
+                TabelSearch.setValueAt(listDocs.get(i).getId(), x, 0);
+                TabelSearch.setValueAt(listDocs.get(i).getNamaDokumen(), x, 1);
+                x++;
             }
         }
     }//GEN-LAST:event_SearchButtonActionPerformed

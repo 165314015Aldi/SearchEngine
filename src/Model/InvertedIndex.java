@@ -502,6 +502,7 @@ public class InvertedIndex {
             // variabel i merupakan idDocument;
             File file = files[i];
             doc.readFile(i + 1, file);
+            doc.setNamaDokumen(file.getName());
             // masukkan file isi directory ke list of document pada obye index
             this.addNewDocument(doc);
         }
