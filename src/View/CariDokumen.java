@@ -8,6 +8,7 @@ package View;
 import Model.Document;
 import Model.Posting;
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 /**
  *
@@ -36,6 +37,7 @@ public class CariDokumen extends javax.swing.JFrame {
         SearchQuery = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         SearchButton = new javax.swing.JButton();
+        CloseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +111,13 @@ public class CariDokumen extends javax.swing.JFrame {
             }
         });
 
+        CloseButton.setText("Close");
+        CloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,10 +131,14 @@ public class CariDokumen extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                        .addComponent(SearchQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(SearchButton)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(CloseButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,9 +148,11 @@ public class CariDokumen extends javax.swing.JFrame {
                     .addComponent(SearchQuery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(SearchButton))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CloseButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,8 +161,9 @@ public class CariDokumen extends javax.swing.JFrame {
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         Home.index.makeDictionaryWithTermNumber();
         String query = SearchQuery.getText();
-
-        ArrayList<Posting> queryPostingList = Home.getIndex().getQueryPosting(query);
+        Document StemmedQuery = new Document(query);
+        StemmedQuery.Stemming();
+        ArrayList<Posting> queryPostingList = Home.getIndex().getQueryPosting(StemmedQuery.getContent());
         int x = 0;
         ArrayList<Document> listDocs = Home.getIndex().getListOfDocument();
         for (int i = 0; i < listDocs.size(); i++) {
@@ -159,6 +175,10 @@ public class CariDokumen extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_SearchButtonActionPerformed
+
+    private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
+            dispose();
+    }//GEN-LAST:event_CloseButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +216,7 @@ public class CariDokumen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CloseButton;
     private javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchQuery;
     private javax.swing.JTable TabelSearch;
