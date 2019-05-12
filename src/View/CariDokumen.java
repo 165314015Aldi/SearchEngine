@@ -159,6 +159,10 @@ public class CariDokumen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        for (int i = 0; i < TabelSearch.getRowCount(); i++) {
+            TabelSearch.setValueAt("", i, 0);
+            TabelSearch.setValueAt("", i, 1);
+        }
         Home.index.makeDictionaryWithTermNumber();
         String query = SearchQuery.getText();
         Document StemmedQuery = new Document(query);
@@ -177,7 +181,7 @@ public class CariDokumen extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
-            dispose();
+        dispose();
     }//GEN-LAST:event_CloseButtonActionPerformed
 
     /**
