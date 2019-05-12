@@ -5,6 +5,10 @@
  */
 package View;
 
+import Model.Document;
+import Model.Posting;
+import java.util.ArrayList;
+
 /**
  *
  * @author AxYxA
@@ -51,6 +55,11 @@ public class CariDokumen extends javax.swing.JFrame {
         jLabel1.setText("Query : ");
 
         SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +94,22 @@ public class CariDokumen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        Home.index.makeDictionaryWithTermNumber();
+        String query = SearchQuery.getText();
+
+        ArrayList<Posting> queryPostingList = Home.getIndex().getQueryPosting(query);
+
+        ArrayList<Document> listDocs = Home.getIndex().getListOfDocument();
+        for (int i = 0; i < listDocs.size(); i++) {
+            ArrayList<Posting> PostingDokumen = Home.getIndex().makeTFIDF(listDocs.get(i).getId());
+            if (Home.getIndex().getCosineSimilarity(queryPostingList, PostingDokumen) > 0) {
+                TabelSearch.setValueAt(listDocs.get(i).getId(), i, 0);
+                TabelSearch.setValueAt(listDocs.get(i).getNamaDokumen(), i, 1);
+            }
+        }
+    }//GEN-LAST:event_SearchButtonActionPerformed
 
     /**
      * @param args the command line arguments
