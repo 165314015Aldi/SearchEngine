@@ -32,6 +32,15 @@ public class Document implements Comparable<Document> {
     private int id;
     private String content;
     private String realContent;
+    private String namaDokumen;
+
+    public String getNamaDokumen() {
+        return namaDokumen;
+    }
+
+    public void setNamaDokumen(String namaDokumen) {
+        this.namaDokumen = namaDokumen;
+    }
 
     public String getRealContent() {
         return realContent;
